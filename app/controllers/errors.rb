@@ -7,5 +7,11 @@ module Madsen
       { message: env['sinatra.error'].message }.to_json
     end
 
+    error Madsen::WrongArgument do
+      content_type :json
+      status 400
+      { message: env['sinatra.error'].message }.to_json
+    end
+
   end
 end

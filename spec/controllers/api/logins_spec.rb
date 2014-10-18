@@ -30,7 +30,7 @@ describe "api/logins" do
         post '/api/logins', :email => "Rune Madsen <rune@runemadsen.com>"
         expect(last_response.status).to eq(400)
         expect(User.count).to eq(0)
-        expect(last_json["message"]).to eq(Madsen::App::INVALID_EMAIL)
+        expect(last_json["message"]).to eq(Madsen::WrongArgument.new(:email).to_s)
       end
     end
 
