@@ -13,4 +13,20 @@ end
 RSpec.configure { |c| 
   c.include RSpecMixin
   c.color = true
+
+  c.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  c.before(:each) do |example|
+    allow(Pony).to receive(:deliver) { true }
+  end
+
+  c.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 }
+

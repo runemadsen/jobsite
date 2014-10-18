@@ -24,4 +24,5 @@ end
 group :test do
   gem 'dotenv', '~> 1.0.2'
   gem 'rspec', '~> 3.1.0'
+  gem 'database_cleaner', '~> 1.3.0'
 end

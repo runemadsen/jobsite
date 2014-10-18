@@ -7,6 +7,7 @@ module Madsen
 
       if valid_email?(@email)
         if User.where(:email => @email).first.nil?
+          status 201
           User.create(:email => @email)
         end
         send_email(@email, "Login to jobsite", "this is a login baby")

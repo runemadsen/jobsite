@@ -12,6 +12,10 @@ def production?
   ENV['RACK_ENV'] == 'production'
 end
 
+def test?
+  ENV['RACK_ENV'] == 'test'
+end
+
 # Initializers
 # -----------------------------------------------------------
 
@@ -63,7 +67,7 @@ module Madsen
 
     # --> CSRF protection
 
-    use Rack::Csrf, :raise => true
+    use Rack::Csrf, :raise => true unless test?
 
     # --> Errors
     

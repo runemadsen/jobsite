@@ -13,6 +13,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     daemons (1.1.9)
+    database_cleaner (1.3.0)
     diff-lcs (1.2.5)
     dotenv (1.0.2)
     eventmachine (1.0.3)
@@ -111,6 +112,7 @@ PLATFORMS
 DEPENDENCIES
   bitter (~> 0.0.1)
   bourbon (~> 4.0.2)
+  database_cleaner (~> 1.3.0)
   dotenv (~> 1.0.2)
   mailcatcher (~> 0.5.12)
   neat (~> 1.7.0)
