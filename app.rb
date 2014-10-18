@@ -1,12 +1,34 @@
+# Require
+# ----------------------------------------------
+
 require 'rubygems'
 require 'bundler'
 Bundler.require(:default, :assets, ENV["RACK_ENV"] || 'development')
 
-set :root, File.dirname(__FILE__)
+# Basic helpers
+# ----------------------------------------------
 
 def production?
   ENV['RACK_ENV'] == 'production'
 end
+
+# Initializers
+# -----------------------------------------------------------
+
+[
+  "ROOT_URL",
+  "ROOT_EMAIL",
+  "DATABASE_URL",
+  "SMTP_ADDRESS",
+  "SMTP_PORT",
+  "SMTP_USERNAME",
+  "SMTP_PASSWORD"
+].each { |var| raise "ENV['#{var}'] does not exist" unless !!ENV[var] }
+
+# Configuration
+# ----------------------------------------------
+
+Dir["./config/*.rb"].each {|file| require file }
 
 # App
 # ----------------------------------------------
@@ -14,7 +36,14 @@ end
 module Madsen
   class App < Sinatra::Base
 
-    # Assets
+    # --> Paths
+
+    set :root, File.dirname(__FILE__)
+    set :views, Proc.new { File.join(root, "app/views") }
+
+    # --> Assets
+
+    set :assets_prefix, %w(app/assets)
     set :assets_precompile, %w(application.js application.css *.png *.jpg *.svg)
     if production?
       set :assets_css_compressor, :scss
@@ -24,40 +53,37 @@ module Madsen
     end
     register Sinatra::AssetPipeline
     
-    # Config
+    # --> Cookies
+
     set :sessions,
         :httponly     => true,
         :secure       => production?,
         :expire_after => 31557600,
         :secret       => ENV['SESSION_SECRET'] || 'abcdefg'
 
-    # CSRF protection
+    # --> CSRF protection
+
     use Rack::Csrf, :raise => true
+
+    # --> Errors
+    
+    error do
+      "SOMETHING WENT WRONG!"
+    end
 
   end
 end
 
-# Initializers
-# -----------------------------------------------------------
-
-[
-  "ROOT_URL",
-  "ROOT_EMAIL",
-  "SMTP_ADDRESS",
-  "SMTP_PORT",
-  "SMTP_USERNAME",
-  "SMTP_PASSWORD"
-].each { |var| raise "ENV['#{var}'] does not exist" unless !!ENV[var] }
-
 # Helpers
 # -----------------------------------------------------------
 
-Dir["./helpers/*.rb"].each {|file| require file }
+Dir["./app/helpers/*.rb"].each {|file| require file }
 Madsen::App.helpers Madsen::Helpers::CSRF
 Madsen::App.helpers Madsen::Helpers::Mail
 
 # Routes
 # -----------------------------------------------------------
 
-Dir["./models/*.rb"].each {|file| require file }
-Dir["./controllers/*.rb"].each {|file| require file }
+Dir["./app/models/*.rb"].each {|file| require file }
+Dir["./app/controllers/*.rb"].each {|file| require file }
+Dir["./app/controllers/api/*.rb"].each {|file| require file }

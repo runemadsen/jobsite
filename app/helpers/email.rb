@@ -1,8 +1,12 @@
 module Madsen
   module Helpers
     module Mail
+
+      def valid_email?(email)
+        !!email.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
+      end
       
-      def send_mail(to, subject, body)
+      def send_email(to, subject, body)
         Pony.mail({
           :from => ENV["ROOT_EMAIL"],
           :to => to,

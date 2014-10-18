@@ -6,6 +6,8 @@ gem 'sinatra-asset-pipeline', '~> 0.5.0', :require => 'sinatra/asset_pipeline'
 gem 'uglifier', '~> 2.5.3'
 gem 'rack_csrf', '~> 2.5.0', :require => 'rack/csrf'
 gem 'pony', '~> 1.11'
+gem 'sequel', '~> 4.15.0'
+gem 'pg', '~> 0.17.1'
 
 group :assets do
   gem 'bourbon', '~> 4.0.2'
@@ -17,4 +19,9 @@ group :development do
   gem 'shotgun'
 	gem 'thin'
   gem 'mailcatcher', '~> 0.5.12', :require => false
+end
+
+group :test do
+  gem 'dotenv', '~> 1.0.2'
+  gem 'rspec', '~> 3.1.0'
 end

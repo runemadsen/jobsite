@@ -2,9 +2,11 @@
 
 ## Development
 
-First run `bundle install`. Then the development server like this:
+You will need postgres.app. Then run `createdb jobsite`.
 
-`$ foreman -f Procfile.dev`
+Then run `bundle install`. 
+
+Then run foreman: `foreman -f Procfile.dev`
 
 We use `mailcatcher` to receive email on the development instance. You can check those mails here:
 
