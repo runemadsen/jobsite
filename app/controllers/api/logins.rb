@@ -3,12 +3,13 @@ module Madsen
     
     post '/api/logins' do
       
-      if valid_email?(params[:email])
-        user = User.where(:email => params[:email]).first
-        if user.nil?
-          User.create(:email => params[:email])
+      @email = params[:email]
+
+      if valid_email?(@email)
+        if User.where(:email => @email).first.nil?
+          User.create(:email => @email)
         end
-        send_email(params[:email], "Login to jobsite", "this is a login baby")
+        send_email(@email, "Login to jobsite", "this is a login baby")
       else
         # raise wrong argument
       end
