@@ -7,10 +7,19 @@
   <!-- Asset pipeline -->
 	<%= stylesheet_tag 'application' %>
   <%= javascript_tag 'application' %>
+  <script type="text/javascript">
+    <% if @js_view %>
+      $(function() {
+        rsm.main = new rsm.<%= @js_view %>();  
+      });
+    <% end %>
+  </script>
 
   <!-- Typekit fonts -->
   <script src="//use.typekit.net/lke5dgb.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
+
+
 
 </head>
 <body>

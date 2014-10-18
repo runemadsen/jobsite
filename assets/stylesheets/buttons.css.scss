@@ -27,3 +27,10 @@
   background-color: $brightblue;
   color: white;
 }
+
+/* States
+-------------------------------------------------------- */
+
+.btn[disabled] {
+  cursor: not-allowed;
+}

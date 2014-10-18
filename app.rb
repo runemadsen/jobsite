@@ -4,6 +4,10 @@ Bundler.require(:default, :assets, ENV["RACK_ENV"] || 'development')
 
 set :root, File.dirname(__FILE__)
 
+def production?
+  ENV['RACK_ENV'] == 'production'
+end
+
 # App
 # ----------------------------------------------
 
@@ -12,14 +16,18 @@ module Madsen
 
     # Assets
     set :assets_precompile, %w(application.js application.css *.png *.jpg *.svg)
-    set :assets_css_compressor, :scss
-    set :assets_js_compressor, :uglifier
+    if production?
+      set :assets_css_compressor, :scss
+      set :assets_js_compressor, :uglifier
+    else
+      set :assets_digest, false
+    end
     register Sinatra::AssetPipeline
     
     # Config
     set :sessions,
         :httponly     => true,
-        :secure       => ENV['RACK_ENV'] == 'production',
+        :secure       => production?,
         :expire_after => 31557600,
         :secret       => ENV['SESSION_SECRET'] || 'abcdefg'
 
@@ -46,6 +54,7 @@ end
 
 Dir["./helpers/*.rb"].each {|file| require file }
 Madsen::App.helpers Madsen::Helpers::CSRF
+Madsen::App.helpers Madsen::Helpers::Mail
 
 # Routes
 # -----------------------------------------------------------

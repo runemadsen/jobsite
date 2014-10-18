@@ -12,6 +12,7 @@ We use `mailcatcher` to receive email on the development instance. You can check
 
 ## TODO
 
+- [ ] Validate email on click
 - [ ] Design minimal splash page
 - [ ] Make login emailing work
 - [ ] Make possible to share with friends by email

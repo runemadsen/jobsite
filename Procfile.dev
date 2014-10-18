@@ -1,2 +1,2 @@
 web: shotgun
-mail: mailcatcher
+mail: mailcatcher -f -v
