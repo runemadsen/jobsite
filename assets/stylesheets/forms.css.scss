@@ -1,0 +1,23 @@
+form {
+  margin: 0;
+}
+
+input {
+  font-family: "proxima-nova";
+  color: #333;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+}
+
+input.lg {
+  font-size: 1.3em;
+  padding: 0.6em;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}

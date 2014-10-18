@@ -22,3 +22,27 @@
     font-size: 1.4em;
   }
 }
+
+#splash-login {
+  max-width: 500px;
+  padding: 1em;
+  margin: 0 auto;
+  margin-top: -20px;
+  background-color: $lightgray;
+  border-radius: 5px;
+
+  input {
+    width: 100%;
+  }
+
+  input[type="email"] {
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9em;
+    padding: 0 1.5em;
+    color: gray;
+  }
+}

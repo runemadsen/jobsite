@@ -22,14 +22,18 @@ module Madsen
         :secure       => ENV['RACK_ENV'] == 'production',
         :expire_after => 31557600,
         :secret       => ENV['SESSION_SECRET'] || 'abcdefg'
+
+    # CSRF protection
+    use Rack::Csrf, :raise => true
+
   end
 end
 
 # Helpers
 # -----------------------------------------------------------
 
-#require_relative 'helpers/s3'
-#Madsen::App.helpers Proxy::S3Helper
+Dir["./helpers/*.rb"].each {|file| require file }
+Madsen::App.helpers Madsen::Helpers::CSRF
 
 # Routes
 # -----------------------------------------------------------

@@ -1,0 +1,24 @@
+/* Basic
+-------------------------------------------------------- */
+
+.btn {
+  border: none;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+/* Sizes
+-------------------------------------------------------- */
+
+.btn.lg {
+  font-size: 1.3em;
+  padding: 0.6em;
+}
+
+/* Colors
+-------------------------------------------------------- */
+
+.btn.success {
+  background-color: $green;
+  color: white;
+}

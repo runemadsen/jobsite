@@ -4,6 +4,7 @@ gem 'unicorn', '~> 4.8.3'
 gem 'sinatra', '~> 1.4.5'
 gem 'sinatra-asset-pipeline', '~> 0.5.0', :require => 'sinatra/asset_pipeline'
 gem 'uglifier', '~> 2.5.3'
+gem 'rack_csrf', '~> 2.5.0', :require => 'rack/csrf'
 
 group :assets do
   gem 'bourbon', '~> 4.0.2'
