@@ -3,6 +3,7 @@
 	<title></title>
 
   <!-- Meta tags -->
+  <meta content="<%= csrf_token %>" name="csrf-token" />
 
   <!-- Asset pipeline -->
 	<%= stylesheet_tag 'application' %>
@@ -18,8 +19,6 @@
   <!-- Typekit fonts -->
   <script src="//use.typekit.net/lke5dgb.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
-
-
 
 </head>
 <body>

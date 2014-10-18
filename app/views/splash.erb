@@ -3,10 +3,11 @@
   <h2>Share job openings through your network, see them spread, and increase qualified leads.</h2>
 
   <form method="post" action="/" id="login-form">
-    <%= csrf_tag %>
     <input type="email" class="lg" name="email" placeholder="Enter your email address" />
     <input type="submit" class="btn lg info" value="Send login email"/>
     <p class="text-center">This site doesn't use passwords, and there is no registration. Simply enter your email and follow the link in your inbox.</p>
   </form>
+
+  <%= csrf_tag %>
 
 </section>

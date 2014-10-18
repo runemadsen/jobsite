@@ -9,7 +9,28 @@ class rsm.SplashView
 
   login_clicked: (e) =>
     e.preventDefault();
-    @email.slideUp(200)
-    @submit.removeClass("info").addClass("success").attr('disabled', 'disabled');
-    @submit.val("Check your inbox!")
+    @submit.val("Sending email...")
+
+    rsm.Login.create(@email.val(), 
+      =>
+        @email.slideUp(200)
+        @submit.removeClass("info")
+          .addClass("success")
+          .attr('disabled', 'disabled')
+          .val("Check your inbox!")
+      ,
+      =>
+        @submit.removeClass("info")
+          .addClass("error")
+          .val("Invalid email")
+          
+        setTimeout( => 
+          @email.val('')
+          @submit.removeClass("error")
+            .addClass("info")
+            .val("Try again")
+        , 2000)
+    )
+
+    
     

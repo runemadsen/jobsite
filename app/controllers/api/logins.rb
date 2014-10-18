@@ -2,6 +2,7 @@ module Madsen
   class App < Sinatra::Base
 
     post '/api/logins' do
+
       content_type :json
       validate_params!(params, :email)
 
@@ -16,7 +17,8 @@ module Madsen
           user = User.create(:email => @email)
         end
         login = Login.create(:user_id => user.id)
-        send_email(@email, "Login to jobsite", "this is a login baby")
+        @token = login.token
+        send_email(@email, "Login to jobsite", erb(:'mails/splash_login', :layout => false))
         { :message => :ok }.to_json
       end
       
