@@ -1,9 +1,6 @@
 module Madsen
   class App < Sinatra::Base
 
-    INVALID_EMAIL = "It looks like you entered something that wasn't an email address"
-    MISSING_EMAIL = "Please send a valid email address with this request"
-    
     post '/api/logins' do
       content_type :json
       validate_params!(params, :email)
