@@ -29,10 +29,11 @@ end
   "SMTP_PASSWORD"
 ].each { |var| raise "ENV['#{var}'] does not exist" unless !!ENV[var] }
 
-# Configuration
+# Files before
 # ----------------------------------------------
 
 Dir["./config/*.rb"].each {|file| require file }
+Dir["./app/lib/*.rb"].each {|file| require file }
 
 # App
 # ----------------------------------------------
@@ -71,22 +72,22 @@ module Madsen
 
     # --> Errors
     
-    error do
-      "SOMETHING WENT WRONG!"
+    error Madsen::MissingArgument do
+      content_type :json
+      status 422
+      { message: env['sinatra.error'].message }.to_json
     end
 
   end
 end
 
-# Helpers
+# Files after
 # -----------------------------------------------------------
 
 Dir["./app/helpers/*.rb"].each {|file| require file }
 Madsen::App.helpers Madsen::Helpers::CSRF
 Madsen::App.helpers Madsen::Helpers::Mail
-
-# Routes
-# -----------------------------------------------------------
+Madsen::App.helpers Madsen::Helpers::Params
 
 Dir["./app/models/*.rb"].each {|file| require file }
 Dir["./app/controllers/*.rb"].each {|file| require file }

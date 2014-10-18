@@ -30,3 +30,6 @@ RSpec.configure { |c|
   end
 }
 
+def last_json
+  @json ||= JSON.parse(last_response.body)
+end
