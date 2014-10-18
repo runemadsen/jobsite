@@ -5,6 +5,7 @@ gem 'sinatra', '~> 1.4.5'
 gem 'sinatra-asset-pipeline', '~> 0.5.0', :require => 'sinatra/asset_pipeline'
 gem 'uglifier', '~> 2.5.3'
 gem 'rack_csrf', '~> 2.5.0', :require => 'rack/csrf'
+gem 'pony', '~> 1.11'
 
 group :assets do
   gem 'bourbon', '~> 4.0.2'

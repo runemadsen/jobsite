@@ -18,3 +18,4 @@ We use `mailcatcher` to receive email on the development instance. You can check
 - [ ] Make possible to share publicly via link
 - [ ] Integrate GA to create a dashboard of traffic to the job listing
 - [ ] Setup unicorn like https://github.com/maccman/trevi
+- [ ] Implement tracking on invitation links

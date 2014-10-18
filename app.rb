@@ -34,6 +34,7 @@ end
 
 [
   "ROOT_URL",
+  "ROOT_EMAIL",
   "SMTP_ADDRESS",
   "SMTP_PORT",
   "SMTP_USERNAME",
