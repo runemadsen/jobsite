@@ -15,4 +15,5 @@ end
 group :development do
   gem 'shotgun'
 	gem 'thin'
+  gem 'mailcatcher', '~> 0.5.12', :require => false
 end

@@ -29,6 +29,17 @@ module Madsen
   end
 end
 
+# Initializers
+# -----------------------------------------------------------
+
+[
+  "ROOT_URL",
+  "SMTP_ADDRESS",
+  "SMTP_PORT",
+  "SMTP_USERNAME",
+  "SMTP_PASSWORD"
+].each { |var| raise "ENV['#{var}'] does not exist" unless !!ENV[var] }
+
 # Helpers
 # -----------------------------------------------------------
 
