@@ -2,7 +2,7 @@ ENV['RACK_ENV'] = 'test'
 
 require 'rack/test'
 require 'dotenv'
-Dotenv.load
+Dotenv.load(".env.test")
 require_relative '../app.rb'
 
 module RSpecMixin

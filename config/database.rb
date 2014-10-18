@@ -10,3 +10,13 @@ unless DB.table_exists?(:users)
     DateTime    :updated_at
   end
 end
+
+unless DB.table_exists?(:logins)
+  DB.create_table :logins do
+    primary_key :id
+    foreign_key :user_id, :users
+    String      :token
+    DateTime    :created_at
+    DateTime    :updated_at
+  end
+end

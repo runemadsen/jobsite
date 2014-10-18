@@ -6,11 +6,13 @@ describe "api/logins" do
 
     context "if new email" do
       it "creates user and sends email" do
-        expect(User.count).to eq(0)
         expect(Pony).to receive(:deliver).once
         post '/api/logins', :email => "rune@runemadsen.com"
         expect(last_response.status).to eq(201)
         expect(User.count).to eq(1)
+        expect(User.first.email).to eq("rune@runemadsen.com")
+        expect(Login.count).to eq(1)
+        expect(Login.first.user.email).to eq("rune@runemadsen.com")
       end
     end
 

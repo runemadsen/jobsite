@@ -10,10 +10,12 @@ module Madsen
       if !valid_email?(@email)
         raise Madsen::WrongArgument.new(:email)
       else
-        if User.where(:email => @email).first.nil?
+        user = User.where(:email => @email).first
+        if user.nil?
           status 201
-          User.create(:email => @email)
+          user = User.create(:email => @email)
         end
+        login = Login.create(:user_id => user.id)
         send_email(@email, "Login to jobsite", "this is a login baby")
         { :message => :ok }.to_json
       end
