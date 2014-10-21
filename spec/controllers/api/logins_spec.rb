@@ -20,7 +20,7 @@ describe "api/logins" do
       it "creates user and sends email" do
         expect(Pony).to receive(:deliver).once
         post '/api/logins', :email => "rune@runemadsen.com"
-        expect(last_response.status).to eq(201)
+        expect(last_response.status).to eq(200)
         expect_one_user_with_login
       end
     end

@@ -11,11 +11,7 @@ module Madsen
       if !valid_email?(@email)
         raise Madsen::WrongArgument.new(:email)
       else
-        user = User.where(:email => @email).first
-        if user.nil?
-          status 201
-          user = User.create(:email => @email)
-        end
+        user = User.find_or_create(:email => @email)
         login = Login.create(:user_id => user.id)
         @token = login.token
         send_email(@email, "Login to jobsite", erb(:'mails/splash_login', :layout => false))

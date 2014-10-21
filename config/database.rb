@@ -36,13 +36,14 @@ unless DB.table_exists?(:shares)
   DB.create_table :shares do
     primary_key :id
     foreign_key :job_id, :jobs
-    foreign_key :user_id, :users
-    String      :email
+    foreign_key :sender_id, :users
+    foreign_key :receiver_id, :users
     DateTime    :created_at
     DateTime    :updated_at
   end
 end
 
+# THE CLOSURE NEEDS INDEXING!!!
 unless DB.table_exists?(:closures)
   DB.create_table :closures do
     primary_key :id
