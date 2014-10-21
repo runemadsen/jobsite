@@ -20,3 +20,34 @@ unless DB.table_exists?(:logins)
     DateTime    :updated_at
   end
 end
+
+unless DB.table_exists?(:jobs)
+  DB.create_table :jobs do
+    primary_key :id
+    String      :company
+    String      :title
+    String      :description, :text=>true
+    DateTime    :created_at
+    DateTime    :updated_at
+  end
+end
+
+unless DB.table_exists?(:shares)
+  DB.create_table :shares do
+    primary_key :id
+    foreign_key :job_id, :jobs
+    foreign_key :user_id, :users
+    String      :email
+    DateTime    :created_at
+    DateTime    :updated_at
+  end
+end
+
+unless DB.table_exists?(:closures)
+  DB.create_table :closures do
+    primary_key :id
+    Integer :parent
+    Integer :child
+    Integer :depth
+  end
+end
