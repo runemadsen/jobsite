@@ -1,6 +1,6 @@
 require_relative '../../spec_helper.rb'
 
-describe "api/logins" do
+describe "api/auth_tokens" do
   
   describe "POST" do
 
@@ -19,7 +19,7 @@ describe "api/logins" do
     context "if new email" do
       it "creates user and sends email" do
         expect(Pony).to receive(:deliver).once
-        post '/api/logins', :email => "rune@runemadsen.com"
+        post '/api/auth_tokens', :email => "rune@runemadsen.com"
         expect(last_response.status).to eq(200)
         expect_one_user_with_login
       end
@@ -29,7 +29,7 @@ describe "api/logins" do
       it "sends email" do
         User.create(:email => "rune@runemadsen.com")
         expect(Pony).to receive(:deliver).once
-        post '/api/logins', :email => "rune@runemadsen.com"
+        post '/api/auth_tokens', :email => "rune@runemadsen.com"
         expect(last_response.status).to eq(200)
         expect_one_user_with_login
       end
@@ -38,7 +38,7 @@ describe "api/logins" do
     context "if invalid email" do
       it "returns error" do
         expect(Pony).to receive(:deliver).never
-        post '/api/logins', :email => "Rune Madsen <rune@runemadsen.com>"
+        post '/api/auth_tokens', :email => "Rune Madsen <rune@runemadsen.com>"
         expect(last_response.status).to eq(400)
         expect_no_user_or_login
         expect(last_json["message"]).to eq(Madsen::WrongArgument.new(:email).to_s)
@@ -48,7 +48,7 @@ describe "api/logins" do
     context "if no email" do
       it "returns error" do
         expect(Pony).to receive(:deliver).never
-        post '/api/logins'
+        post '/api/auth_tokens'
         expect(last_response.status).to eq(422)
         expect_no_user_or_login
         expect(last_json["message"]).to eq(Madsen::MissingArgument.new(:email).to_s)

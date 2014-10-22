@@ -6,15 +6,15 @@ module Madsen
         !!email.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
       end
 
-      def send_login_email(user, login)
+      def send_login_email(user, auth)
         @user = user
-        @login = login
+        @auth = auth
         send_email(@user.email, "Login to jobsite", erb(:'mails/splash_login', :layout => false))
       end
 
-      def send_share_email(user, login, share)
+      def send_share_email(user, auth, share)
         @user = user
-        @login = login
+        @auth = auth
         @share = share
         send_email(@user.email, "Someone shared a job with you", erb(:'mails/share_login', :layout => false))
       end

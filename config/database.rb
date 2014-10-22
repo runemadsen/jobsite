@@ -11,11 +11,21 @@ unless DB.table_exists?(:users)
   end
 end
 
-unless DB.table_exists?(:logins)
-  DB.create_table :logins do
+unless DB.table_exists?(:auth_tokens)
+  DB.create_table :auth_tokens do
     primary_key :id
     foreign_key :user_id, :users
     String      :token
+    DateTime    :created_at
+    DateTime    :updated_at
+  end
+end
+
+unless DB.table_exists?(:sessions)
+  DB.create_table :sessions do
+    primary_key :id
+    foreign_key :user_id, :users
+    String      :hash
     DateTime    :created_at
     DateTime    :updated_at
   end

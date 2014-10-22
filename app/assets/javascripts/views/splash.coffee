@@ -11,7 +11,7 @@ class rsm.SplashView
     e.preventDefault();
     @submit.val("Sending email...")
 
-    rsm.Login.create(@email.val(), 
+    rsm.AuthToken.create(@email.val(), 
       =>
         @email.slideUp(200)
         @submit.removeClass("info")

@@ -1,9 +1,9 @@
-class rsm.Login
+class rsm.AuthToken
 
   @create: (email, success, error) ->
     $.ajax(
       type: "POST",
-      url: "/api/logins",
+      url: "/api/auth_tokens",
       data: 
         email: email
       success: success
