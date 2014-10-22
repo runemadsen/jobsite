@@ -11,6 +11,7 @@ module RSpecMixin
 end
 
 RSpec.configure { |c| 
+
   c.include RSpecMixin
   c.color = true
 
