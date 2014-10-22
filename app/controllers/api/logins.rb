@@ -5,19 +5,14 @@ module Madsen
 
       content_type :json
       validate_params!(params, :email)
-
       @email = params[:email]
+      raise Madsen::WrongArgument.new(:email) unless valid_email?(@email)
 
-      if !valid_email?(@email)
-        raise Madsen::WrongArgument.new(:email)
-      else
-        user = User.find_or_create(:email => @email)
-        login = Login.create(:user_id => user.id)
-        @token = login.token
-        send_email(@email, "Login to jobsite", erb(:'mails/splash_login', :layout => false))
-        { :message => :ok }.to_json
-      end
-      
+      @user = User.find_or_create(:email => @email)
+      @login = Login.create(:user_id => user.id)
+      send_login_email(@user, @login)
+
+      { :message => :ok }.to_json
     end
 
   end

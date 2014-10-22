@@ -5,6 +5,19 @@ module Madsen
       def valid_email?(email)
         !!email.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
       end
+
+      def send_login_email(user, login)
+        @user = user
+        @login = login
+        send_email(@user.email, "Login to jobsite", erb(:'mails/splash_login', :layout => false))
+      end
+
+      def send_share_email(user, login, share)
+        @user = user
+        @login = login
+        @share = share
+        send_email(@user.email, "Someone shared a job with you", erb(:'mails/share_login', :layout => false))
+      end
       
       def send_email(to, subject, body)
         Pony.mail({
