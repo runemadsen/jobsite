@@ -41,7 +41,11 @@ Dir["./app/lib/*.rb"].each {|file| require file }
 module Madsen
   class App < Sinatra::Base
 
-    # --> Constants
+    # --> Reloading for Development
+
+    configure :development do
+      register Sinatra::Reloader
+    end
 
     # --> Paths
 

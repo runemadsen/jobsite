@@ -11,6 +11,15 @@ input {
   box-sizing: border-box;
   border-radius: 5px;
   margin-bottom: 0.5em;
+  border: 2px solid $lightgray;
+}
+
+input.invert {
+  border: none;
+}
+
+input.full {
+  width: 100%;
 }
 
 input.lg {

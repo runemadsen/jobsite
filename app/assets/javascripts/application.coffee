@@ -1,7 +1,8 @@
 #= require vendor/jquery
+#= require vendor/codemirror
 #= require_self
-#= require_directory ./models
-#= require_directory ./views
+#= require_tree ./models
+#= require_tree ./views
 
 window.rsm = {}
 

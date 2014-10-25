@@ -1,0 +1,14 @@
+#new-job {
+  @include span-columns(8);
+  @include shift(2);  
+
+  .CodeMirror {
+    font-size: 1.2em;
+    border: 2px solid $lightgray;
+    padding: 10px;
+    border-radius: 5px;
+  }
+}
+
+
+

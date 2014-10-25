@@ -1,2 +1,2 @@
-web: shotgun
+web: thin -R config.ru start
 mail: mailcatcher -f -v

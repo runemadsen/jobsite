@@ -6,7 +6,7 @@ You will need postgres.app. Then run `createdb jobsite`.
 
 Then run `bundle install`. 
 
-Then run foreman: `foreman -f Procfile.dev`
+Then run foreman: `foreman start -f Procfile.dev`
 
 We use `mailcatcher` to receive email on the development instance. You can check those mails here:
 
@@ -14,6 +14,7 @@ We use `mailcatcher` to receive email on the development instance. You can check
 
 ## TODO
 
+- [ ] Track Women vs. Men who applied for position. Show it in analytics.
 - [ ] Tests for email sending the right stuff
 
 - [ ] Design minimal splash page
