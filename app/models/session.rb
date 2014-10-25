@@ -12,8 +12,8 @@ class Session < Sequel::Model
 
     # send cookie back to user
     expires = 60 * 60 * 24 * 7  
-    response.set_cookie COOKIE_ID_KEY, { value: uuid, max_age: expires.to_s }
-    response.set_cookie COOKIE_HASH_KEY, { value: hash, max_age: expires.to_s }
+    response.set_cookie COOKIE_ID_KEY, { value: session.user_id, max_age: expires.to_s }
+    response.set_cookie COOKIE_HASH_KEY, { value: session.hash, max_age: expires.to_s }
 
     session
 

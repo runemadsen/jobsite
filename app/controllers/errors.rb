@@ -13,5 +13,11 @@ module Madsen
       { message: env['sinatra.error'].message }.to_json
     end
 
+    error Madsen::AccessDenied do
+      content_type :json
+      status 404
+      { message: env['sinatra.error'].message }.to_json
+    end
+
   end
 end
