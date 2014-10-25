@@ -3,10 +3,11 @@
   @include shift(2);  
 
   .CodeMirror {
-    font-size: 1.2em;
+    font-size: 1.1em;
     border: 2px solid $lightgray;
     padding: 10px;
     border-radius: 5px;
+    font-family: "proxima-nova";
   }
 }
 

@@ -1,5 +1,6 @@
 #= require vendor/jquery
 #= require vendor/codemirror
+#= require vendor/codemirror-markdown
 #= require_self
 #= require_tree ./models
 #= require_tree ./views
