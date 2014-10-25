@@ -9,7 +9,7 @@ module Madsen
       raise Madsen::WrongArgument.new(:email) unless valid_email?(@email)
 
       @user = User.find_or_create(:email => @email)
-      @auth = AuthToken.create(:user_id => user.id)
+      @auth = AuthToken.create(:user_id => @user.id)
       send_login_email(@user, @auth)
 
       { :message => :ok }.to_json

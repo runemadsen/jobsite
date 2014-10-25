@@ -41,6 +41,8 @@ Dir["./app/lib/*.rb"].each {|file| require file }
 module Madsen
   class App < Sinatra::Base
 
+    # --> Constants
+
     # --> Paths
 
     set :root, File.dirname(__FILE__)
@@ -80,6 +82,7 @@ Dir["./app/helpers/*.rb"].each {|file| require file }
 Madsen::App.helpers Madsen::Helpers::CSRF
 Madsen::App.helpers Madsen::Helpers::Mail
 Madsen::App.helpers Madsen::Helpers::Params
+Madsen::App.helpers Madsen::Helpers::Auth
 
 Dir["./app/models/*.rb"].each {|file| require file }
 Dir["./app/controllers/*.rb"].each {|file| require file }

@@ -6,14 +6,14 @@ describe "api/auth_tokens" do
 
     def expect_one_user_with_login
       expect(User.count).to eq(1)
-      expect(Login.count).to eq(1)
+      expect(AuthToken.count).to eq(1)
       expect(User.first.email).to eq("rune@runemadsen.com")
-      expect(Login.first.user.email).to eq("rune@runemadsen.com")
+      expect(AuthToken.first.user.email).to eq("rune@runemadsen.com")
     end
 
     def expect_no_user_or_login
       expect(User.count).to eq(0)
-      expect(Login.count).to eq(0)
+      expect(AuthToken.count).to eq(0)
     end
 
     context "if new email" do
