@@ -25,7 +25,7 @@ unless DB.table_exists?(:sessions)
   DB.create_table :sessions do
     primary_key :id
     foreign_key :user_id, :users
-    String      :hash
+    String      :sha
     DateTime    :created_at
     DateTime    :updated_at
   end

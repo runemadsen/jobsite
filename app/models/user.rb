@@ -1,5 +1,6 @@
 class User < Sequel::Model
   one_to_many :auth_tokens
+  one_to_many :sessions
   one_to_many :sent_shares, :class=>:Share, :key=> :sender_id
   one_to_many :received_shares, :class=>:Share, :key=> :receiver_id
   self.raise_on_save_failure = true

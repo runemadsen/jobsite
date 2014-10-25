@@ -24,6 +24,10 @@ RSpec.configure { |c|
     allow(Pony).to receive(:deliver) { true }
   end
 
+  c.after(:each) do |examples|
+    clear_cookies
+  end
+
   c.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
